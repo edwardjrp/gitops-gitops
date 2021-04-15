@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage ('Check resource drift') {
       steps {
-        sh "oc diff -k config > drift-report.txt"
+        sh "oc diff -k config | tee drift-report.txt"
         sh "! test -s drift-repot.txt"
       }
     }
